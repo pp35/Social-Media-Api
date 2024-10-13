@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { fetchPosts, createPost, likePost, fetchUserInfo, sendFriendRequest, acceptFriendRequest, rejectFriendRequest } from '../Api/Api'; // Update your imports accordingly
-
+import { fetchPosts, createPost, likePost, fetchUserInfo, sendFriendRequest, acceptFriendRequest, rejectFriendRequest } from '../Api/Api'; 
 const Dashboard = () => {
   const navigate = useNavigate();
   const [user, setUser] = useState(null);
@@ -18,8 +17,8 @@ const Dashboard = () => {
     } else {
       fetchUserInfo(token);
       fetchAllPosts(token);
-      fetchFriendRequests(token); // Fetch friend requests on load
-      fetchFriends(token); // Fetch friends list
+      fetchFriendRequests(token); 
+      fetchFriends(token); 
     }
   }, [navigate]);
 
@@ -59,8 +58,8 @@ const Dashboard = () => {
     try {
       const response = await createPost({ content: newPostContent }, token);
       if (response.status === 201) {
-        setPosts([response.data, ...posts]); // Add the new post to the beginning of the list
-        setNewPostContent(''); // Clear the input
+        setPosts([response.data, ...posts]); 
+        setNewPostContent(''); 
       }
     } catch (error) {
       console.error('Error creating post:', error);
@@ -150,7 +149,7 @@ const Dashboard = () => {
     <div className="p-6 bg-gray-100 min-h-screen">
       <h1 className="text-3xl font-bold mb-6">Dashboard</h1>
       
-      {/* User Info Section */}
+      
       {loading ? (
         <p>Loading user information...</p>
       ) : user ? (
@@ -162,7 +161,7 @@ const Dashboard = () => {
         <p>No user information available.</p>
       )}
 
-      {/* New Post Section */}
+    
       <div className="mb-6 p-4 bg-white rounded shadow">
         <h2 className="text-xl font-semibold mb-4">Create a Post</h2>
         <textarea
@@ -180,7 +179,7 @@ const Dashboard = () => {
         </button>
       </div>
 
-      {/* Posts Section */}
+    
       <h2 className="text-xl font-semibold mb-4">Posts</h2>
       {posts.length ? (
         posts.map(post => (
@@ -200,7 +199,6 @@ const Dashboard = () => {
         <p>No posts available.</p>
       )}
 
-      {/* Friend Requests Section */}
       <h2 className="text-xl font-semibold mb-4">Friend Requests</h2>
       {friendRequests.length ? (
         friendRequests.map(request => (
@@ -226,7 +224,7 @@ const Dashboard = () => {
         <p>No friend requests available.</p>
       )}
 
-      {/* Friends List Section */}
+      
       <h2 className="text-xl font-semibold mb-4">Friends</h2>
       {friendsList.length ? (
         friendsList.map(friend => (
@@ -244,7 +242,7 @@ const Dashboard = () => {
         <p>No friends available.</p>
       )}
 
-      {/* Logout Button */}
+      
       <button
         onClick={handleLogout}
         className="w-full px-4 py-2 text-white bg-red-500 rounded hover:bg-red-600 mt-4"

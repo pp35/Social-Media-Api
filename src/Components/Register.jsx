@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { registerUser } from '../Api/Api'; // Import the registerUser function
-
+import { registerUser } from '../Api/Api'; 
 const Register = () => {
   const [name, setName] = useState('');
-  const [username, setUsername] = useState(''); // Add username state
+  const [username, setUsername] = useState(''); 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
@@ -13,11 +12,11 @@ const Register = () => {
     e.preventDefault();
 
     try {
-      // Use the registerUser function from the API
+      
       const response = await registerUser({ name, username, email, password });
 
       if (response.status === 201) {
-        // Redirect to login page on successful registration
+        
         navigate('/login');
       } else {
         alert(`Registration failed: ${response.data.message}`);
@@ -34,7 +33,7 @@ const Register = () => {
       <form onSubmit={handleRegister}>
         <input
           type="text"
-          placeholder="Username" // Add a placeholder for the username
+          placeholder="Username" 
           value={username}
           onChange={(e) => setUsername(e.target.value)}
           className="block w-full p-2 mb-4 border rounded"

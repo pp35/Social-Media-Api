@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { loginUser } from '../Api/Api'; // Import the loginUser function
-
+import { loginUser } from '../Api/Api'; 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -11,18 +10,18 @@ const Login = () => {
     e.preventDefault();
 
     try {
-      const { data } = await loginUser({ email, password }); // Call the API function
+      const { data } = await loginUser({ email, password }); 
 
-      // If successful, store the token and redirect to the dashboard
+      
       if (data.token) {
-        localStorage.setItem('token', data.token); // Store the token in localStorage
-        navigate('/dashboard'); // Redirect to the dashboard
+        localStorage.setItem('token', data.token); 
+        navigate('/dashboard'); 
       } else {
         alert('Login failed: No token received');
       }
     } catch (error) {
       console.error('Error during login:', error);
-      alert(error.message); // Show error message to the user
+      alert(error.message); 
     }
   };
 
